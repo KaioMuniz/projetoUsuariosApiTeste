@@ -1,0 +1,17 @@
+services:
+
+  projeto-usuariosapi-db:
+    image: postgres:16 # Usa a imagem oficial do PostgreSQL na versão 16
+    container_name: usuariosapi-postgres # Define um nome fixo para o container (opcional, mas útil)
+    restart: always # Garante que o container reinicie automaticamente se parar ou o sistema reiniciar
+    ports:
+      - "5438:5432" # Mapeia a porta 5432 (padrão do PostgreSQL) do container para a porta 5438 do host
+    environment:
+      POSTGRES_DB: projetoausuariosapi # Cria um banco de dados inicial com esse nome
+      POSTGRES_USER: usuariosuser # Cria um usuário com esse nome
+      POSTGRES_PASSWORD: usuariospassword # Define a senha do usuário
+    volumes:
+      - usuariosapi-data:/var/lib/postgresql/data # Usa um volume nomeado para persistência dos dados do banco
+
+volumes:
+  usuariosapi-data: # Volume nomeado que armazena os dados do PostgreSQL
